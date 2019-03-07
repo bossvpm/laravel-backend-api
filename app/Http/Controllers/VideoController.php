@@ -31,4 +31,29 @@ class VideoController extends Controller
         }
         return response()->json($response, $responseCode);
     }
+
+    public function getVideoMetaData($videoId)
+    {
+        $response = array('status' => 'false');
+        $responseCode = 200;
+        if(!empty($videoId))
+        {
+            $result = Video::select('video_size as videoSize','viewers_count as viewers', 'user_id as createdBy')->where('id', $videoId)->first();
+            if(!empty($result))
+            {
+                $response['status'] = true;
+                $response['result'] = $result;
+            }
+            else
+            {
+                $response['message'] = "Video does not exists.";
+            }
+        }
+        else
+        {
+            $response['message'] = "Invalid request.";
+            $responseCode = 400;
+        }
+        return response()->json($response, $responseCode);
+    }
 }
