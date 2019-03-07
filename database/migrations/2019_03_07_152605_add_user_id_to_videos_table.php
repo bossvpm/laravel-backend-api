@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserVideosTable extends Migration
+class AddUserIdToVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateUserVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_videos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('created_by');
-            $table->string('video_id');
-            $table->timestamps();
+        Schema::table('videos', function (Blueprint $table) {
+            $table->string('user_id')->after('id');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateUserVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_videos');
+        Schema::table('videos', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 }
