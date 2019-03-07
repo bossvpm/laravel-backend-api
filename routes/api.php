@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//video APIs
 Route::get('userVideoSize/{userId}', 'VideoController@userVideoSize');
 Route::get('video/{videoId}', 'VideoController@getVideoMetaData');
 Route::patch('video/{video}', 'VideoController@patchVideoMetaData');

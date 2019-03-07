@@ -12,7 +12,7 @@ class VideosTableSeeder extends Seeder
      */
     public function run()
     {
-        // Let's truncate our existing records to start from scratch.
+        // Truncate existing videos table.
         Video::truncate();
 
         // Seed data
@@ -39,7 +39,7 @@ class VideosTableSeeder extends Seeder
                 'Video7', 'User3', 200, 2200,
             ),
         );
-        // And now, let's create a few videos in our database:
+        // Adding video seeds to videos table
         foreach ($seedDatas as $seedData ) {
             Video::create([
                 'id' => $seedData[0],

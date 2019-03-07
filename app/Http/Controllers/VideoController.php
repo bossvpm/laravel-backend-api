@@ -7,6 +7,13 @@ use App\Video;
 
 class VideoController extends Controller
 {
+    /**
+     * Computes total video size of a user
+     *
+     * @param string $userId Id of the user requested in the API
+     * 
+     * @return $response json data
+     */ 
     public function userVideoSize($userId)
     {   
         $response = array('status' => 'false');
@@ -32,6 +39,13 @@ class VideoController extends Controller
         return response()->json($response, $responseCode);
     }
 
+    /**
+     * Retrive a video's meta data
+     *
+     * @param string $videoId Id of the video requested in the API
+     * 
+     * @return $response json data
+     */ 
     public function getVideoMetaData($videoId)
     {
         $response = array('status' => 'false');
@@ -57,6 +71,14 @@ class VideoController extends Controller
         return response()->json($response, $responseCode);
     }
 
+    /**
+     * Updates video's meta data
+     *
+     * @param Request   $request  The request data of API call
+     * @param Video   $video  Video model binding
+     * 
+     * @return $response json data
+     */ 
     public function patchVideoMetaData(Request $request, Video $video)
     {
         $requestData = $request->all();
