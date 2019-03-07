@@ -17,7 +17,7 @@ class VideoController extends Controller
             if(!empty($sum))
             {
                 $response['status'] = true;
-                $response['totalVideoSIze'] = (int)$sum;
+                $response['total_video_size'] = (int)$sum;
             }
             else
             {
@@ -38,7 +38,7 @@ class VideoController extends Controller
         $responseCode = 200;
         if(!empty($videoId))
         {
-            $result = Video::select('video_size as videoSize','viewers_count as viewers', 'user_id as createdBy')->where('id', $videoId)->first();
+            $result = Video::select('video_size','viewers_count', 'user_id as created_by')->where('id', $videoId)->first();
             if(!empty($result))
             {
                 $response['status'] = true;
