@@ -1,71 +1,113 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+**Available API endpoints**
+----
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+**Show User Total Video Size**
+----
+  Returns json data about a single user's total video size.
 
-## About Laravel
+* **URL**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  /userVideoSize/:userId
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Method:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  `GET`
+  
+*  **URL Params**
 
-## Learning Laravel
+   **Required:**
+ 
+   `userId=[integer]`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* **Data Params**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+  None
 
-## Laravel Sponsors
+* **Success Response:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  * **Code:** 200 <br />
+    **Content:** `{"status":true,"total_video_size":200}`
+ 
+* **Error Response:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"status":"false","message":"No videos found for this user"}`
 
-## Contributing
+  OR
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  * **Code:** 400 UNAUTHORIZED <br />
+    **Content:** `{"status":"false","message":"Invalid request"}`
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Show Video Metadata**
+----
+  Returns json data about a single video.
+
+* **URL**
+
+  /video/:videoId
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `videoId=[string]`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"status":true,"result":{"video_size":300,"viewers_count":3000,"created_by":"User2"}}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{"status":"false","message":"Video does not exists."}`
+
+  OR
+
+  * **Code:** 400 UNAUTHORIZED <br />
+    **Content:** `{"status":"false","message":"Invalid request"}`
+
+
+**Update Video Metadata**
+----
+  Updates the video metadata and returns json of updated data.
+
+* **URL**
+
+  /video/:videoId
+
+* **Method:**
+
+  `PATCH`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `videoId=[string]`
+
+* **Data Params**
+
+    `video_size=[integer]`
+    `viewers_count=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"id":"Video2","user_id":"User1","video_size":"80","viewers_count":"2000","created_at":"2019-03-07 15:40:49","updated_at":"2019-03-07 17:16:02"}`
+ 
+* **Error Response:**
+
+  * **Code:** 400 UNAUTHORIZED <br />
+    **Content:** `{"status":"false","message":"Invalid request"}`
