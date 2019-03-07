@@ -28,6 +28,7 @@ class VideoController extends Controller
             }
             else
             {
+                $responseCode = 404;
                 $response['message'] = "No videos found for this user";
             }
         }
@@ -60,6 +61,7 @@ class VideoController extends Controller
             }
             else
             {
+                $responseCode = 404;
                 $response['message'] = "Video does not exists.";
             }
         }
