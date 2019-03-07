@@ -17,7 +17,7 @@
 
    **Required:**
  
-   `userId=[integer]`
+   `userId=[string]`
 
 * **Data Params**
 
