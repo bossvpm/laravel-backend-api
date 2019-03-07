@@ -56,4 +56,19 @@ class VideoController extends Controller
         }
         return response()->json($response, $responseCode);
     }
+
+    public function patchVideoMetaData(Request $request, Video $video)
+    {
+        $requestData = $request->all();
+        if(isset($requestData['video_size']) && isset($requestData['viewers_count']) && is_numeric($requestData['video_size'])&& is_numeric($requestData['viewers_count']))
+        {
+            $video->update($requestData);
+            return response()->json($video, 200);
+        }
+        else
+        {
+            $response = array('status' => 'false', 'message' => "Invalid request.");
+            return response()->json($response, 400);
+        }
+    }
 }

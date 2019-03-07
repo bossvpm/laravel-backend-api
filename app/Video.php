@@ -13,5 +13,6 @@ class Video extends Model
     */
    protected $fillable = [
     'video_size', 'viewers_count'
-];
+    ];
+    public $incrementing = false;
 }

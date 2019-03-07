@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('userVideoSize/{userId}', 'VideoController@userVideoSize');
 Route::get('video/{videoId}', 'VideoController@getVideoMetaData');
+Route::patch('video/{video}', 'VideoController@patchVideoMetaData');
